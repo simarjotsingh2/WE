@@ -9,8 +9,8 @@ export const galleryChapters = [
         cover: "/images/gallery/we-1.png",
         images: [
             "/images/gallery/we-1.png",
-            "/images/gallery/meet-2.jpg",
-            "/images/gallery/meet-3.jpg",
+            "/images/gallery/we-2.png",
+            "/images/gallery/we-3.png",
         ],
     },
     {
