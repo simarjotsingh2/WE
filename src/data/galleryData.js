@@ -6,9 +6,9 @@ export const galleryChapters = [
         title: "First Meet",
         subtitle: "The day everything quietly changed.",
         quote: "Some moments don’t look big… until you look back.",
-        cover: "/images/gallery/meet-1.jpg",
+        cover: "/images/gallery/we-1.png",
         images: [
-            "/images/gallery/meet-1.jpg",
+            "/images/gallery/we-1.png",
             "/images/gallery/meet-2.jpg",
             "/images/gallery/meet-3.jpg",
         ],
