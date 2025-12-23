@@ -1,0 +1,57 @@
+.hero {
+    position: relative;
+    height: 100vh;
+    background: url("/src/assets/hero-bg.jpg") center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(125, 77, 255, 0.6),
+            /* purple */
+            rgba(255, 78, 203, 0.6)
+            /* pink */
+        );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+
+
+.hero-content p {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.hero-content .btn-donate {
+    margin-top: 2rem;
+    background: linear-gradient(90deg, #ff4ecb, #7d4dff);
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.hero-content .btn-donate:hover {
+    transform: scale(1.05);
+}

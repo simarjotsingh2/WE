@@ -1,0 +1,127 @@
+:root {
+    --brand: linear-gradient(135deg, #ff4ecb, #7d4dff);
+    --muted: #475569;
+}
+
+.don-wrap {
+    background: #fff;
+    padding: 72px 0 96px;
+}
+
+.don-hero {
+    width: min(1100px, 92%);
+    margin: 0 auto 12px;
+    text-align: center;
+}
+
+.don-title {
+    margin: 0 0 10px;
+    font-size: clamp(32px, 5.4vw, 56px);
+    font-weight: 800;
+}
+
+.don-title span {
+    background: var(--brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.don-lead {
+    max-width: 80ch;
+    margin: 0 auto;
+    color: var(--muted);
+    line-height: 1.65;
+}
+
+.don-form {
+    width: min(900px, 92%);
+    margin: 22px auto 0;
+    display: grid;
+    gap: 12px;
+}
+
+.don-amt {
+    display: flex;
+    gap: 8px;
+}
+
+.don-amt select,
+.don-amt input {
+    padding: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    font: inherit;
+}
+
+.copyline {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.copyline code {
+    padding: .35rem .5rem;
+    background: #f3f4f6;
+    border-radius: 6px;
+    font-family: ui-monospace, Menlo, monospace;
+}
+
+.don-grid {
+    width: min(1100px, 92%);
+    margin: 24px auto 0;
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.don-card {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, .06);
+    border-radius: 16px;
+    padding: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .06);
+}
+
+.mono {
+    font-family: ui-monospace, Menlo, monospace;
+}
+
+.mini {
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: .35rem .65rem;
+}
+
+.btn-primary {
+    display: inline-block;
+    margin-top: 8px;
+    padding: .6rem 1.2rem;
+    border-radius: 999px;
+    border: 0;
+    color: #fff;
+    font-weight: 700;
+    background: var(--brand);
+    text-decoration: none;
+}
+
+.footnote {
+    width: min(900px, 92%);
+    margin: 22px auto 0;
+    color: #6b7280;
+    text-align: center;
+}
+
+@media (max-width: 1000px) {
+    .don-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .don-grid {
+        grid-template-columns: 1fr;
+    }
+}

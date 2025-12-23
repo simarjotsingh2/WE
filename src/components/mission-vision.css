@@ -1,0 +1,269 @@
+:root {
+    --brand-grad: linear-gradient(135deg, #ff4ecb, #7d4dff);
+    --ink: #0f172a;
+    --muted: #475569;
+}
+
+/* ---- Hero band (centered, light) ---- */
+.mv-hero {
+    position: relative;
+    background: #ffffff;
+    /* solid white, no tint on gutters */
+    padding: 30px;
+    border-bottom: 1px solid rgba(0, 0, 0, .06);
+    isolation: isolate;
+    overflow: hidden;
+    /* clip any inner glow bleed */
+}
+
+/* ⬇️  Move the animated wash INSIDE the container so edges stay white */
+.mv-hero-inner {
+    position: relative;
+    width: min(1100px, 92%);
+    background-color: #ffffff;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.mv-hero-inner::before {
+    content: "";
+    position: absolute;
+    /* a soft halo around the inner block (not full-bleed) */
+    inset: -24px -64px -28px;
+    pointer-events: none;
+    border-radius: 28px;
+    z-index: -1;
+
+    /* fade out near the bottom so the next white section matches perfectly */
+    -webkit-mask-image: linear-gradient(#000, #000 80%, transparent 100%);
+    mask-image: linear-gradient(#000, #000 80%, transparent 100%);
+}
+
+/* (old) full-bleed wash removed */
+/* .mv-hero::before { ... }  <-- deleted on purpose */
+
+/* ---- Title & body ---- */
+.mv-hero-title {
+    margin: 0 0 14px;
+    font-weight: 800;
+    font-size: clamp(28px, 5vw, 40px);
+    letter-spacing: -0.3px;
+    line-height: 1.1;
+    display: inline-block;
+    background-image: linear-gradient(90deg, #ff4ecb 0%, #7d4dff 100%);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: titleGlow 6s ease-in-out infinite alternate;
+}
+
+.mv-hero-body {
+    margin: 0 auto;
+    max-width: 70ch;
+    color: var(--muted);
+    font-size: clamp(16px, 1.8vw, 18px);
+    line-height: 1.65;
+}
+
+/* ---- Section (centered layout) ---- */
+.mv-section {
+    position: relative;
+    background: #fff;
+    /* full white to guarantee no tint */
+    padding: 56px 0;
+    isolation: isolate;
+    /* blocks previous effects just in case */
+}
+
+.mv-container {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 520px);
+    gap: 28px;
+    align-items: start;
+}
+
+/* Card */
+.mv-card {
+    background: #fff;
+    border: 3px solid rgba(0, 0, 0, .06);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.06);
+    border-radius: 16px;
+    padding: 32px 28px;
+    text-align: center;
+    transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+
+.mv-card:hover,
+.mv-card:focus-within {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 60px rgba(0, 0, 0, .10);
+    border-color: rgba(125, 77, 255, .20);
+}
+
+.mv-title {
+    margin: 0 0 18px;
+    font-size: clamp(30px, 4.6vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.mv-title>span {
+    background: var(--brand-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.mv-subtitle {
+    margin: 18px 0 8px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.mv-body {
+    margin: 0 auto 8px;
+    color: var(--muted);
+    font-size: 19px;
+    line-height: 1.65;
+    max-width: 70ch;
+}
+
+/* ---- Image (NO CROP, container adapts) ---- */
+.mv-image-wrap {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, .06);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, .06);
+    background: #fff;
+    display: grid;
+    place-items: center;
+    transition: transform .35s ease, filter .35s ease, box-shadow .35s ease;
+}
+
+.mv-image-wrap:hover {
+    transform: scale(1.015);
+    filter: saturate(1.05);
+    box-shadow: 0 22px 60px rgba(0, 0, 0, .10);
+}
+
+.mv-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 0;
+}
+
+/* ---- Scroll-reveal helpers ---- */
+.reveal-up,
+.reveal-fade,
+.reveal-left,
+.reveal-right {
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
+.reveal-up {
+    transform: translateY(24px);
+}
+
+.reveal-left {
+    transform: translateX(-28px);
+}
+
+.reveal-right {
+    transform: translateX(28px);
+}
+
+.reveal-fade {
+    transform: none;
+}
+
+.in.reveal-up,
+.in.reveal-left,
+.in.reveal-right,
+.in.reveal-fade {
+    opacity: 1;
+    transform: none;
+    transition: transform 700ms cubic-bezier(.22, .61, .36, 1),
+        opacity 700ms ease;
+}
+
+/* tasteful stagger */
+.mv-hero-title.in.reveal-up {
+    transition-delay: 60ms;
+}
+
+.mv-hero-body.in.reveal-fade {
+    transition-delay: 140ms;
+}
+
+.mv-card.in.reveal-left {
+    transition-delay: 200ms;
+}
+
+.mv-image-wrap.in.reveal-right {
+    transition-delay: 260ms;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1100px) {
+    .mv-container {
+        grid-template-columns: 1fr;
+    }
+
+    .mv-image-wrap {
+        max-width: 520px;
+        margin: 0 auto;
+    }
+}
+
+/* Small phones: tighten spacing a bit */
+@media (max-width: 520px) {
+    .mv-section {
+        padding: 44px 0;
+    }
+
+    .mv-card {
+        padding: 26px 20px;
+    }
+}
+
+/* ---- Accessibility: motion reduction ---- */
+@media (prefers-reduced-motion: reduce) {
+
+    .mv-hero-inner::before,
+    .mv-hero-title {
+        animation: none !important;
+    }
+
+    .reveal-up,
+    .reveal-left,
+    .reveal-right,
+    .reveal-fade {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}
+
+/* ---- Keyframes ---- */
+@keyframes titleGlow {
+    0% {
+        text-shadow: 0 0 0 rgba(126, 85, 255, 0);
+        filter: drop-shadow(0 0 0 rgba(255, 78, 203, 0));
+    }
+
+    100% {
+        text-shadow: 0 4px 16px rgba(126, 85, 255, .18);
+        filter: drop-shadow(0 2px 10px rgba(255, 78, 203, .15));
+    }
+}
