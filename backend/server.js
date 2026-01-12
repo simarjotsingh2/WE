@@ -16,31 +16,33 @@ const app = express();
 // ✅ Parse JSON
 app.use(express.json());
 
-// ✅ CORS (fixed)
+// ✅ CORS
 const allowedOrigins = (process.env.CORS_ORIGIN || "")
     .split(",")
     .map((s) => s.trim())
     .filter(Boolean);
 
-app.use(
-    cors({
-        origin: (origin, cb) => {
-            if (!origin) return cb(null, true);
+const corsOptions = {
+    origin: (origin, cb) => {
+        if (!origin) return cb(null, true); // Postman/curl
 
-            // ✅ allow all Vercel preview/prod domains
-            if (origin.endsWith(".vercel.app")) return cb(null, true);
+        // ✅ allow any vercel deployment
+        if (origin.endsWith(".vercel.app")) return cb(null, true);
 
-            // ✅ allow list from env (localhost + any custom domain you add)
-            if (allowedOrigins.includes(origin)) return cb(null, true);
+        // ✅ allow from env list
+        if (allowedOrigins.includes(origin)) return cb(null, true);
 
-            return cb(new Error("CORS blocked: " + origin));
-        },
-        credentials: true,
-    })
-);
+        return cb(null, false); // deny without crashing
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+};
 
-// ✅ Handle preflight requests
-app.options("*", cors());
+app.use(cors(corsOptions));
+
+// ✅ IMPORTANT: use regex instead of "*"
+app.options(/.*/, cors(corsOptions));
 
 // Routes
 app.use("/api/services", servicesRoutes);
