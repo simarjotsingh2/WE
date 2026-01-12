@@ -9,6 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@editorjs/editorjs": "^2.31.0",
+    "@editorjs/header": "^2.8.8",
+    "@editorjs/list": "^2.0.9",
+    "@editorjs/paragraph": "^2.11.7",
+    "@editorjs/quote": "^2.7.6",
     "@radix-ui/react-slot": "^1.2.3",
     "@react-three/drei": "^9.122.0",
     "@react-three/fiber": "^8.18.0",

@@ -49,7 +49,7 @@ export default function JoinWe() {
                 </label>
 
                 <label>
-                    Phone (optional)
+                    Phone
                     <input name="phone" value={form.phone} onChange={handleChange} />
                 </label>
 
@@ -57,7 +57,7 @@ export default function JoinWe() {
                     I’m interested in
                     <select name="interest" value={form.interest} onChange={handleChange}>
                         <option>Volunteer</option>
-                        <option>Partnership</option>
+                        <option>Compliance Partnership</option>
                         <option>Corporate Training</option>
                         <option>Internship</option>
                     </select>

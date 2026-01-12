@@ -129,6 +129,7 @@
     display: block;
     transform: scale(1.02);
     transition: transform .55s ease;
+    z-index: 1;
 }
 
 .g-coverOverlay {
@@ -137,6 +138,7 @@
     background: linear-gradient(to top, rgba(0, 0, 0, .35), rgba(0, 0, 0, .02));
     opacity: .65;
     transition: opacity .35s ease;
+    z-index: 2;
 }
 
 .g-coverHint {

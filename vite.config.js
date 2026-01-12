@@ -3,7 +3,7 @@ import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  plugins: [react()],                  // ← only react here
+  plugins: [react()],
   resolve: {
     dedupe: ["react", "react-dom"],
     alias: {
@@ -11,8 +11,19 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: ['three', '@react-three/fiber'], // optional but helps cold start
+    include: ["three", "@react-three/fiber"],
   },
-  server: { port: 5173, open: true },
+
+  server: {
+    port: 5173,
+    open: true,
+
+    // ✅ ADD THIS
+    proxy: {
+      "/api": "http://localhost:5000",
+      "/uploads": "http://localhost:5000",
+    },
+  },
+
   preview: { port: 5174 },
 });
