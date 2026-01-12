@@ -20,27 +20,22 @@ app.use(express.json());
 const allowedOrigins = (process.env.CORS_ORIGIN || "")
     .split(",")
     .map((s) => s.trim())
-    .filter(Boolean); // <-- IMPORTANT (removes "")
+    .filter(Boolean);
 
 app.use(
     cors({
-        origin: (origin, callback) => {
-            // allow requests with no origin (Postman, curl)
-            if (!origin) return callback(null, true);
+        origin: (origin, cb) => {
+            if (!origin) return cb(null, true);
 
-            // if you provided a list, allow only those
-            if (allowedOrigins.length && allowedOrigins.includes(origin)) {
-                return callback(null, true);
-            }
+            // ✅ allow all Vercel preview/prod domains
+            if (origin.endsWith(".vercel.app")) return cb(null, true);
 
-            // if list not provided, allow all (not recommended for production)
-            if (!allowedOrigins.length) return callback(null, true);
+            // ✅ allow list from env (localhost + any custom domain you add)
+            if (allowedOrigins.includes(origin)) return cb(null, true);
 
-            return callback(new Error("CORS blocked: " + origin));
+            return cb(new Error("CORS blocked: " + origin));
         },
         credentials: true,
-        methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-        allowedHeaders: ["Content-Type", "Authorization"],
     })
 );
 
