@@ -32,8 +32,12 @@ app.use("/api/about", aboutRoutes);
 
 
 // Test route
-app.get("/api/health", (req, res) => {
+app.get("/health", (req, res) => {
     res.json({ status: "ok", backend: "express" });
+});
+
+app.get("/", (req, res) => {
+    res.send("✅ WE Backend is running. Try /health");
 });
 
 // Example: gallery route (replace later with DB)
