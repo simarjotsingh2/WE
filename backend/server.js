@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import express from "express";
 
 import aboutRoutes from "./routes/about.routes.js";
+import adminRouter from "./routes/admin.js";
+import adminUploadRouter from "./routes/adminUpload.js";
 import galleryRoutes from "./routes/gallery.routes.js";
 import heroRoutes from "./routes/hero.routes.js";
 import navRoutes from "./routes/nav.routes.js";
@@ -51,6 +53,8 @@ app.use("/api/services-page", servicesPageRoutes);
 app.use("/api/nav", navRoutes);
 app.use("/api/hero", heroRoutes);
 app.use("/api/about", aboutRoutes);
+app.use("/api/admin", adminRouter);
+app.use("/api/admin", adminUploadRouter);
 
 // Health + Root
 app.get("/health", (req, res) => {
